@@ -1,3 +1,4 @@
+import 'package:clerk_auth/clerk_auth.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {
@@ -21,4 +22,12 @@ class AuthSignUpRequested extends AuthEvent {
 
 class AuthSignOutRequested extends AuthEvent {
   const AuthSignOutRequested();
+}
+
+class AuthExternalStateChanged extends AuthEvent {
+  final User? user;
+  const AuthExternalStateChanged({this.user});
+
+  @override
+  List<Object?> get props => [user];
 }

@@ -12,6 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignInRequested>(_onAuthSignInRequested);
     on<AuthSignUpRequested>(_onAuthSignUpRequested);
     on<AuthSignOutRequested>(_onAuthSignOutRequested);
+    on<AuthExternalStateChanged>(_onExternalStateChanged);
 
     clerk.addListener(_onAuthStateChanged);
   }
@@ -23,7 +24,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onAuthStateChanged() {
-    final user = clerk.user;
+    add(AuthExternalStateChanged(user: clerk.user));
+  }
+
+  void _onExternalStateChanged(
+    AuthExternalStateChanged event,
+    Emitter<AuthState> emit,
+  ) {
+    final user = event.user;
     if (user != null) {
       emit(AuthAuthenticated(user: user));
     } else {

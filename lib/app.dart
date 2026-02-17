@@ -23,16 +23,7 @@ class App extends StatelessWidget {
       builder: (context, child) {
         return AuthWrapper(
           child: AuthListener(
-            child: MediaQuery(
-              data:
-                  MediaQuery.maybeOf(
-                    context,
-                  )?.copyWith(textScaler: const TextScaler.linear(1.0)) ??
-                  const MediaQueryData().copyWith(
-                    textScaler: const TextScaler.linear(1.0),
-                  ),
-              child: child!,
-            ),
+            child: child!,
           ),
         );
       },

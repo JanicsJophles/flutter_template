@@ -78,6 +78,15 @@ class ClerkAuthPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
 
+                  SizedBox(
+                    child: GestureDetector(
+                      child: Text("Go to Home"),
+                      onTap: () {
+                        context.router.push(HomeRoute());
+                      },
+                    ),
+                  ),
+
                   const SizedBox(height: 32),
 
                   const ClerkAuthentication(),
